@@ -18,13 +18,62 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) ZZTableViewDelegateMethodType methodOptions;
 - (void)didSetBlock:(BOOL)blockIfNonnull methodType:(ZZTableViewDelegateMethodType)methodOptions;
 
+///// MARK: UITableViewDataSource
+//
+///// MARK: row delegate method
+//- (void)setWillReloadCellForRow:(void (^ _Nullable)(UITableView * _Nonnull, UITableViewCell * _Nonnull, NSIndexPath * _Nonnull))willReloadCellForRow;
+//
+//- (void)setWillDisplayCellForRow:(void (^ _Nullable)(UITableView * _Nonnull, UITableViewCell * _Nonnull, NSIndexPath * _Nonnull))willDisplayCellForRow;
+//
+//- (void)setDidEndDisplayingCell:(void (^ _Nullable)(UITableView * _Nonnull, UITableViewCell * _Nonnull, NSIndexPath * _Nonnull))didEndDisplayingCell;
+//
+//- (void)setHeightForRowAtIndexPath:(CGFloat (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))heightForRowAtIndexPath;
+//
+//- (void)setEstimatedHeightForRowAtIndexPath:(CGFloat (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))estimatedHeightForRowAtIndexPath;
+////@property (nonatomic, copy) UITableViewCellAccessoryType (^accessoryTypeForRowWithIndexPath)(UITableView *tableView, NSIndexPath *indexPath);
+//- (void)setAccessoryButtonTappedForRowWithIndexPath:(void (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))accessoryButtonTappedForRowWithIndexPath;
+//- (void)setShouldHighlightRowAtIndexPath:(BOOL (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))shouldHighlightRowAtIndexPath;
+//- (void)setDidHighlightRowAtIndexPath:(void (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))didHighlightRowAtIndexPath;
+//- (void)setDidUnhighlightRowAtIndexPath:(void (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))didUnhighlightRowAtIndexPath;
+//- (void)setWillSelectRowAtIndexPath:(NSIndexPath * _Nonnull (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))willSelectRowAtIndexPath;
+//- (void)setWillDeselectRowAtIndexPath:(NSIndexPath * _Nonnull (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))willDeselectRowAtIndexPath;
+//- (void)setDidSelectRowAtIndexPath:(void (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))didSelectRowAtIndexPath;
+//- (void)setDidDeselectRowAtIndexPath:(void (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))didDeselectRowAtIndexPath;
+//- (void)setEditingStyleForRowAtIndexPath:(UITableViewCellEditingStyle (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))editingStyleForRowAtIndexPath;
+//- (void)setTitleForDeleteConfirmationButtonForRowAtIndexPath:(NSString * _Nonnull (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))titleForDeleteConfirmationButtonForRowAtIndexPath;
+//- (void)setEditActionsForRowAtIndexPath:(NSArray<UITableViewRowAction *> * _Nonnull (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))editActionsForRowAtIndexPath;
+//- (void)setLeadingSwipeActionsConfigurationForRowAtIndexPath:(UISwipeActionsConfiguration * _Nonnull (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))leadingSwipeActionsConfigurationForRowAtIndexPath;
+//- (void)setTrailingSwipeActionsConfigurationForRowAtIndexPath:(UISwipeActionsConfiguration * _Nonnull (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))trailingSwipeActionsConfigurationForRowAtIndexPath;
+//- (void)setShouldIndentWhileEditingRowAtIndexPath:(BOOL (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))shouldIndentWhileEditingRowAtIndexPath;
+//- (void)setWillBeginEditingRowAtIndexPath:(void (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))willBeginEditingRowAtIndexPath;
+//- (void)setDidEndEditingRowAtIndexPath:(void (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))didEndEditingRowAtIndexPath;
+//- (void)setIndentationLevelForRowAtIndexPath:(NSInteger (^ _Nullable)(UITableView * _Nonnull, NSIndexPath * _Nonnull))indentationLevelForRowAtIndexPath;
+//// MARK: section delegate method
+//- (void)setWillDisplayHeaderView:(void (^ _Nullable)(UITableView * _Nonnull, UIView * _Nonnull, NSInteger))willDisplayHeaderView;
+//- (void)setWillDisplayFooterView:(void (^ _Nullable)(UITableView * _Nonnull, UIView * _Nonnull, NSInteger))willDisplayFooterView;
+//- (void)setDidEndDisplayingHeaderView:(void (^ _Nullable)(UITableView * _Nonnull, UIView * _Nonnull, NSInteger))didEndDisplayingHeaderView;
+//- (void)setDidEndDisplayingFooterView:(void (^ _Nullable)(UITableView * _Nonnull, UIView * _Nonnull, NSInteger))didEndDisplayingFooterView;
+//- (void)setHeightForHeaderInSection:(CGFloat (^ _Nullable)(UITableView * _Nonnull, NSInteger))heightForHeaderInSection;
+//- (void)setHeightForFooterInSection:(CGFloat (^ _Nullable)(UITableView * _Nonnull, NSInteger))heightForFooterInSection;
+//- (void)setEstimatedHeightForHeaderInSection:(CGFloat (^ _Nullable)(UITableView * _Nonnull, NSInteger))estimatedHeightForHeaderInSection;
+//- (void)setEstimatedHeightForFooterInSection:(CGFloat (^ _Nullable)(UITableView * _Nonnull, NSInteger))estimatedHeightForFooterInSection;
+//- (void)setViewForHeaderInSection:(UIView * _Nonnull (^ _Nullable)(UITableView * _Nonnull, NSInteger))viewForHeaderInSection;
+//- (void)setViewForFooterInSection:(UIView * _Nonnull (^ _Nullable)(UITableView * _Nonnull, NSInteger))viewForFooterInSection;
+//// MARK: section datasource method
+//- (void)setTitleForHeaderInSection:(NSString * _Nonnull (^ _Nullable)(UITableView * _Nonnull, NSInteger))titleForHeaderInSection;
+//- (void)setTitleForFooterInSection:(NSString * _Nonnull (^ _Nullable)(UITableView * _Nonnull, NSInteger))titleForFooterInSection;
+
+
 /// MARK: UITableViewDataSource
 
 @property (nonatomic, nullable, copy) void (^willReloadCellForRow)(UITableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath);
 
 /// MARK: row delegate method
 @property (nonatomic, nullable, copy) void (^willDisplayCellForRow)(UITableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath);
+
+
 @property (nonatomic, nullable, copy) void (^didEndDisplayingCell)(UITableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath);
+
 @property (nonatomic, nullable, copy) CGFloat (^heightForRowAtIndexPath)(UITableView *tableView, NSIndexPath *indexPath);
 @property (nonatomic, nullable, copy) CGFloat (^estimatedHeightForRowAtIndexPath)(UITableView *tableView, NSIndexPath *indexPath);
 //@property (nonatomic, copy) UITableViewCellAccessoryType (^accessoryTypeForRowWithIndexPath)(UITableView *tableView, NSIndexPath *indexPath);
@@ -63,3 +112,4 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+

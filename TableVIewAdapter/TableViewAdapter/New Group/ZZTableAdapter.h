@@ -6,6 +6,7 @@
 //  nullable, copyright © 2019 zz. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "ZZTableViewDelegator.h"
 #import "ZZTableSectionItem.h"
 
@@ -14,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZZTableAdapter : ZZTableViewDelegator <UITableViewDataSource, UITableViewDelegate>
 
 //@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, strong) ZZTableViewDelegator *delegator;
 
 @property (readonly) NSArray<ZZTableSectionItem *> *sectionItems;
 
