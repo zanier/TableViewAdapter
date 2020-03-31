@@ -19,7 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly) NSArray<ZZTableSectionItem *> *sectionItems;
 
-- (void)updateMethodOptionsWithMethodType:(ZZTableViewDelegateMethodType)methodType addOrRemoveBlock:(BOOL)flag;
+//- (void)updateMethodOptionsWithMethodType:(ZZTableViewDelegateMethodType)methodType addOrRemoveBlock:(BOOL)flag;
+- (void)updateMethodOption1:(NSUInteger)option1 methodOption2:(NSUInteger)option2 addOrRemoveBlock:(BOOL)flag;
 
 ///MARK: contain
 - (BOOL)containsSection:(ZZTableSectionItem *)section;

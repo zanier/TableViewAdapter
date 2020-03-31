@@ -33,9 +33,6 @@
         NSLog(@"did select row0");
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     };
-    row0.didDeselectRowAtIndexPath = ^(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath) {
-        NSLog(@"did deselect row0");
-    };
 
     ZZNormalRowItem *row1 = [[ZZNormalRowItem alloc] init];
     row1.title = @"row1";
@@ -43,12 +40,27 @@
     row1.heightForRowAtIndexPath = ^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
         return 45;
     };
-    
+
     ZZNormalRowItem *row2 = [[ZZNormalRowItem alloc] init];
     row2.title = @"row2";
     row2.titleColor = [UIColor grayColor];
     row2.heightForRowAtIndexPath = ^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
         return 65;
+    };
+    row2.didEndDisplayingCell = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath) {
+        NSLog(@"did End Displaying Cell row2");
+    };
+    
+    row1.didSelectRowAtIndexPath = ^(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath) {
+        NSLog(@"did deselect row1");
+        if (row2.didEndDisplayingCell) {
+            row2.didEndDisplayingCell = nil;
+        } else {
+            row2.didEndDisplayingCell = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath) {
+                NSLog(@"did End Displaying Cell row2");
+            };
+        }
+        [tableView reloadData];
     };
     
     ZZNormalSectionItem *section0 = [[ZZNormalSectionItem alloc] init];

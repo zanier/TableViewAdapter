@@ -13,6 +13,7 @@
 #import "NormalViewController.h"
 #import "CustomCellViewController.h"
 #import <objc/runtime.h>
+#import <malloc/malloc.h>
 
 @interface ViewController ()
 
@@ -21,6 +22,18 @@
 @end
 
 @implementation ViewController
+
+- (void)test {
+    int a[] = {1,2,3,4,};
+    NSData *data = [NSData dataWithBytes:(const void *)a length:40];
+    NSLog(@"%@", data);
+    NSLog(@"size_by_malloc_size --- %zd",
+                  malloc_size((__bridge const void *)data));
+
+    int b = 3;
+    int d = 1 << b;
+    NSLog(@"%d", d);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,7 +45,12 @@
     row0.title = @"Normal cell";
     row0.titleColor = [UIColor orangeColor];
     row0.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    row0.heightForRowAtIndexPath = ^CGFloat(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath) {
+        return 100;
+    };
     row0.didSelectRowAtIndexPath = ^(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath) {
+//        [weakSelf test];
+//        return ;
         [weakSelf.navigationController pushViewController:[NormalViewController new] animated:YES];
     };
     

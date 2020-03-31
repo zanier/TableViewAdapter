@@ -7,25 +7,12 @@
 //
 
 #import "ZZTableViewDelegator.h"
-//if (_block == block) return;\
-//_block = [block copy];\
 
 #define ZZBlockSetter(block, methodOptions) \
-_delegateBlocks[@(methodOptions)] = block;\
+self.delegateBlocks[@(methodOptions)] = [block copy];\
 [self didSetBlock:(BOOL)block methodType:methodOptions];
 
-//if (_block) {\
-//    _methodOptions |= methodOptions;\
-//} else {\
-//    _methodOptions &= ~methodOptions;\
-//}\
-//[self.sectionItem.adapter updateMethodOptionsWithMethodType:methodOptions addOrRemoveBlock:(BOOL)block];
-
-@interface ZZTableViewDelegator () {
-//    NSMutableDictionary *_delegateBlocks;
-}
-
-@property (nonatomic, strong) NSMutableDictionary *delegateBlocks;
+@interface ZZTableViewDelegator ()
 
 @end
 
@@ -72,20 +59,23 @@ _delegateBlocks[@(methodOptions)] = block;\
     return _delegateBlocks;
 }
 
-- (void)tempblock2:(id)block methodOptions:(ZZTableViewDelegateMethodType)methodOptions {
-    
-    _delegateBlocks[@(methodOptions)] = block;
-}
-
 - (void)didSetBlock:(BOOL)blockIfNonnull methodType:(ZZTableViewDelegateMethodType)methodOptions {
-    if (blockIfNonnull) {
-        _methodOptions |= methodOptions;
+    if (methodOptions < 32) {
+        NSUInteger options = 1 << methodOptions;
+        if (blockIfNonnull) {
+            _methodOptions1 |= options;
+        } else {
+            _methodOptions1 &= ~options;
+        }
     } else {
-        _methodOptions &= ~methodOptions;
+        NSUInteger options = 1 << (methodOptions - 32);
+        if (blockIfNonnull) {
+            _methodOptions2 |= options;
+        } else {
+            _methodOptions2 &= ~options;
+        }
     }
-    //[self.sectionItem.adapter updateMethodOptionsWithMethodType:methodOptions addOrRemoveBlock:(BOOL)block];
 }
-
 
 /// MARK: row delegate method
 - (void)setWillDisplayCellForRow:(void (^)(UITableView *, UITableViewCell *, NSIndexPath *))willDisplayCellForRow {
@@ -115,53 +105,104 @@ _delegateBlocks[@(methodOptions)] = block;\
 - (void)setAccessoryButtonTappedForRowWithIndexPath:(void (^)(UITableView *, NSIndexPath *))accessoryButtonTappedForRowWithIndexPath {
     ZZBlockSetter(accessoryButtonTappedForRowWithIndexPath, ZZRow_accessoryButtonTappedForRowWithIndexPath);
 }
+- (void (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))accessoryButtonTappedForRowWithIndexPath {
+    return self.delegateBlocks[@(ZZRow_accessoryButtonTappedForRowWithIndexPath)];
+}
 - (void)setShouldHighlightRowAtIndexPath:(BOOL (^)(UITableView *, NSIndexPath *))shouldHighlightRowAtIndexPath {
     ZZBlockSetter(shouldHighlightRowAtIndexPath, ZZRow_shouldHighlightRowAtIndexPath);
+}
+- (BOOL (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))shouldHighlightRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_shouldHighlightRowAtIndexPath)];
 }
 - (void)setDidHighlightRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))didHighlightRowAtIndexPath {
     ZZBlockSetter(didHighlightRowAtIndexPath, ZZRow_didHighlightRowAtIndexPath);
 }
+- (void (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))didHighlightRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_didHighlightRowAtIndexPath)];
+}
 - (void)setDidUnhighlightRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))didUnhighlightRowAtIndexPath {
     ZZBlockSetter(didUnhighlightRowAtIndexPath, ZZRow_didUnhighlightRowAtIndexPath);
+}
+- (void (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))didUnhighlightRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_didUnhighlightRowAtIndexPath)];
 }
 - (void)setWillSelectRowAtIndexPath:(NSIndexPath * (^)(UITableView *, NSIndexPath *))willSelectRowAtIndexPath {
     ZZBlockSetter(willSelectRowAtIndexPath, ZZRow_willSelectRowAtIndexPath);
 }
+- (NSIndexPath * _Nonnull (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))willSelectRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_willSelectRowAtIndexPath)];
+}
 - (void)setWillDeselectRowAtIndexPath:(NSIndexPath * (^)(UITableView *, NSIndexPath *))willDeselectRowAtIndexPath {
     ZZBlockSetter(willDeselectRowAtIndexPath, ZZRow_willDeselectRowAtIndexPath);
+}
+- (NSIndexPath * _Nonnull (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))willDeselectRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_willDeselectRowAtIndexPath)];
 }
 - (void)setDidSelectRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))didSelectRowAtIndexPath {
     ZZBlockSetter(didSelectRowAtIndexPath, ZZRow_didSelectRowAtIndexPath);
 }
+- (void (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))didSelectRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_didSelectRowAtIndexPath)];
+}
 - (void)setDidDeselectRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))didDeselectRowAtIndexPath {
     ZZBlockSetter(didDeselectRowAtIndexPath, ZZRow_didDeselectRowAtIndexPath);
+}
+- (void (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))didDeselectRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_didDeselectRowAtIndexPath)];
 }
 - (void)setEditingStyleForRowAtIndexPath:(UITableViewCellEditingStyle (^)(UITableView *, NSIndexPath *))editingStyleForRowAtIndexPath {
     ZZBlockSetter(editingStyleForRowAtIndexPath, ZZRow_editingStyleForRowAtIndexPath);
 }
+- (UITableViewCellEditingStyle (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))editingStyleForRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_editingStyleForRowAtIndexPath)];
+}
 - (void)setTitleForDeleteConfirmationButtonForRowAtIndexPath:(NSString * (^)(UITableView *, NSIndexPath *))titleForDeleteConfirmationButtonForRowAtIndexPath {
     ZZBlockSetter(titleForDeleteConfirmationButtonForRowAtIndexPath, ZZRow_titleForDeleteConfirmationButtonForRowAtIndexPath);
+}
+- (NSString * _Nonnull (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))titleForDeleteConfirmationButtonForRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_titleForDeleteConfirmationButtonForRowAtIndexPath)];
 }
 - (void)setEditActionsForRowAtIndexPath:(NSArray<UITableViewRowAction *> * (^)(UITableView *, NSIndexPath *))editActionsForRowAtIndexPath {
     ZZBlockSetter(editActionsForRowAtIndexPath, ZZRow_editActionsForRowAtIndexPath);
 }
+- (NSArray<UITableViewRowAction *> * _Nonnull (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))editActionsForRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_editActionsForRowAtIndexPath)];
+}
 - (void)setLeadingSwipeActionsConfigurationForRowAtIndexPath:(UISwipeActionsConfiguration * (^)(UITableView *, NSIndexPath *))leadingSwipeActionsConfigurationForRowAtIndexPath {
     ZZBlockSetter(leadingSwipeActionsConfigurationForRowAtIndexPath, ZZRow_leadingSwipeActionsConfigurationForRowAtIndexPath);
+}
+- (UISwipeActionsConfiguration * _Nonnull (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))leadingSwipeActionsConfigurationForRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_leadingSwipeActionsConfigurationForRowAtIndexPath)];
 }
 - (void)setTrailingSwipeActionsConfigurationForRowAtIndexPath:(UISwipeActionsConfiguration * (^)(UITableView *, NSIndexPath *))trailingSwipeActionsConfigurationForRowAtIndexPath {
     ZZBlockSetter(trailingSwipeActionsConfigurationForRowAtIndexPath, ZZRow_trailingSwipeActionsConfigurationForRowAtIndexPath);
 }
+- (UISwipeActionsConfiguration * _Nonnull (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))trailingSwipeActionsConfigurationForRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_trailingSwipeActionsConfigurationForRowAtIndexPath)];
+}
 - (void)setShouldIndentWhileEditingRowAtIndexPath:(BOOL (^)(UITableView *, NSIndexPath *))shouldIndentWhileEditingRowAtIndexPath {
     ZZBlockSetter(shouldIndentWhileEditingRowAtIndexPath, ZZRow_shouldIndentWhileEditingRowAtIndexPath);
+}
+- (BOOL (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))shouldIndentWhileEditingRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_shouldIndentWhileEditingRowAtIndexPath)];
 }
 - (void)setWillBeginEditingRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))willBeginEditingRowAtIndexPath {
     ZZBlockSetter(willBeginEditingRowAtIndexPath, ZZRow_willBeginEditingRowAtIndexPath);
 }
+- (void (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))willBeginEditingRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_willBeginEditingRowAtIndexPath)];
+}
 - (void)setDidEndEditingRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))didEndEditingRowAtIndexPath {
     ZZBlockSetter(didEndEditingRowAtIndexPath, ZZRow_didEndEditingRowAtIndexPath);
 }
+- (void (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))didEndEditingRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_didEndEditingRowAtIndexPath)];
+}
 - (void)setIndentationLevelForRowAtIndexPath:(NSInteger (^)(UITableView *, NSIndexPath *))indentationLevelForRowAtIndexPath {
     ZZBlockSetter(indentationLevelForRowAtIndexPath, ZZRow_indentationLevelForRowAtIndexPath);
+}
+- (NSInteger (^)(UITableView * _Nonnull, NSIndexPath * _Nonnull))indentationLevelForRowAtIndexPath {
+    return self.delegateBlocks[@(ZZRow_indentationLevelForRowAtIndexPath)];
 }
 
 // MARK: section delegate
@@ -232,7 +273,7 @@ _delegateBlocks[@(methodOptions)] = block;\
 - (void)setTitleForHeaderInSection:(NSString * (^)(UITableView *, NSInteger))titleForHeaderInSection {
     ZZBlockSetter(titleForHeaderInSection, ZZSection_titleForHeaderInSection);
 }
-- (NSString * _Nonnull (^)(UITableView * _Nonnull, NSInteger))titleForHeaderInSection {
+- (NSString * (^)(UITableView * _Nonnull, NSInteger))titleForHeaderInSection {
     return self.delegateBlocks[@(ZZSection_titleForHeaderInSection)];
 }
 - (void)setTitleForFooterInSection:(NSString * (^)(UITableView *, NSInteger))titleForFooterInSection {
@@ -245,110 +286,3 @@ _delegateBlocks[@(methodOptions)] = block;\
 #undef ZZBlockSetter
 
 @end
-
-///// MARK: row delegate method
-//- (void)setWillDisplayCellForRow:(void (^)(UITableView *, UITableViewCell *, NSIndexPath *))willDisplayCellForRow {
-//    ZZBlockSetter(_willDisplayCellForRow, willDisplayCellForRow, ZZRow_willDisplayCellForRow);
-//}
-//- (void)setDidEndDisplayingCell:(void (^)(UITableView *, UITableViewCell *, NSIndexPath *))didEndDisplayingCell {
-//    ZZBlockSetter(_didEndDisplayingCell, didEndDisplayingCell, ZZRow_didEndDisplayingCell);
-//}
-//-(void)setHeightForRowAtIndexPath:(CGFloat (^)(UITableView *, NSIndexPath *))heightForRowAtIndexPath {
-//    ZZBlockSetter(_heightForRowAtIndexPath, heightForRowAtIndexPath, ZZRow_heightForRowAtIndexPath);
-//}
-//- (void)setEstimatedHeightForRowAtIndexPath:(CGFloat (^)(UITableView *, NSIndexPath *))estimatedHeightForRowAtIndexPath {
-//    ZZBlockSetter(_estimatedHeightForRowAtIndexPath, estimatedHeightForRowAtIndexPath, ZZRow_estimatedHeightForRowAtIndexPath);
-//}
-//- (void)setAccessoryButtonTappedForRowWithIndexPath:(void (^)(UITableView *, NSIndexPath *))accessoryButtonTappedForRowWithIndexPath {
-//    ZZBlockSetter(_accessoryButtonTappedForRowWithIndexPath, accessoryButtonTappedForRowWithIndexPath, ZZRow_accessoryButtonTappedForRowWithIndexPath);
-//}
-//- (void)setShouldHighlightRowAtIndexPath:(BOOL (^)(UITableView *, NSIndexPath *))shouldHighlightRowAtIndexPath {
-//    ZZBlockSetter(_shouldHighlightRowAtIndexPath, shouldHighlightRowAtIndexPath, ZZRow_shouldHighlightRowAtIndexPath);
-//}
-//- (void)setDidHighlightRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))didHighlightRowAtIndexPath {
-//    ZZBlockSetter(_didHighlightRowAtIndexPath, didHighlightRowAtIndexPath, ZZRow_didHighlightRowAtIndexPath);
-//}
-//- (void)setDidUnhighlightRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))didUnhighlightRowAtIndexPath {
-//    ZZBlockSetter(_didUnhighlightRowAtIndexPath, didUnhighlightRowAtIndexPath, ZZRow_didUnhighlightRowAtIndexPath);
-//}
-//- (void)setWillSelectRowAtIndexPath:(NSIndexPath * (^)(UITableView *, NSIndexPath *))willSelectRowAtIndexPath {
-//    ZZBlockSetter(_willSelectRowAtIndexPath, willSelectRowAtIndexPath, ZZRow_willSelectRowAtIndexPath);
-//}
-//- (void)setWillDeselectRowAtIndexPath:(NSIndexPath * (^)(UITableView *, NSIndexPath *))willDeselectRowAtIndexPath {
-//    ZZBlockSetter(_willDeselectRowAtIndexPath, willDeselectRowAtIndexPath, ZZRow_willDeselectRowAtIndexPath);
-//}
-//- (void)setDidSelectRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))didSelectRowAtIndexPath {
-//    ZZBlockSetter(_didSelectRowAtIndexPath, didSelectRowAtIndexPath, ZZRow_didSelectRowAtIndexPath);
-//}
-//- (void)setDidDeselectRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))didDeselectRowAtIndexPath {
-//    ZZBlockSetter(_didDeselectRowAtIndexPath, didDeselectRowAtIndexPath, ZZRow_didDeselectRowAtIndexPath);
-//}
-//- (void)setEditingStyleForRowAtIndexPath:(UITableViewCellEditingStyle (^)(UITableView *, NSIndexPath *))editingStyleForRowAtIndexPath {
-//    ZZBlockSetter(_editingStyleForRowAtIndexPath, editingStyleForRowAtIndexPath, ZZRow_editingStyleForRowAtIndexPath);
-//}
-//- (void)setTitleForDeleteConfirmationButtonForRowAtIndexPath:(NSString * (^)(UITableView *, NSIndexPath *))titleForDeleteConfirmationButtonForRowAtIndexPath {
-//    ZZBlockSetter(_titleForDeleteConfirmationButtonForRowAtIndexPath, titleForDeleteConfirmationButtonForRowAtIndexPath, ZZRow_titleForDeleteConfirmationButtonForRowAtIndexPath);
-//}
-//- (void)setEditActionsForRowAtIndexPath:(NSArray<UITableViewRowAction *> * (^)(UITableView *, NSIndexPath *))editActionsForRowAtIndexPath {
-//    ZZBlockSetter(_editActionsForRowAtIndexPath, editActionsForRowAtIndexPath, ZZRow_editActionsForRowAtIndexPath);
-//}
-//- (void)setLeadingSwipeActionsConfigurationForRowAtIndexPath:(UISwipeActionsConfiguration * (^)(UITableView *, NSIndexPath *))leadingSwipeActionsConfigurationForRowAtIndexPath {
-//    ZZBlockSetter(_leadingSwipeActionsConfigurationForRowAtIndexPath, leadingSwipeActionsConfigurationForRowAtIndexPath, ZZRow_leadingSwipeActionsConfigurationForRowAtIndexPath);
-//}
-//- (void)setTrailingSwipeActionsConfigurationForRowAtIndexPath:(UISwipeActionsConfiguration * (^)(UITableView *, NSIndexPath *))trailingSwipeActionsConfigurationForRowAtIndexPath {
-//    ZZBlockSetter(_trailingSwipeActionsConfigurationForRowAtIndexPath, trailingSwipeActionsConfigurationForRowAtIndexPath, ZZRow_trailingSwipeActionsConfigurationForRowAtIndexPath);
-//}
-//- (void)setShouldIndentWhileEditingRowAtIndexPath:(BOOL (^)(UITableView *, NSIndexPath *))shouldIndentWhileEditingRowAtIndexPath {
-//    ZZBlockSetter(_shouldIndentWhileEditingRowAtIndexPath, shouldIndentWhileEditingRowAtIndexPath, ZZRow_shouldIndentWhileEditingRowAtIndexPath);
-//}
-//- (void)setWillBeginEditingRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))willBeginEditingRowAtIndexPath {
-//    ZZBlockSetter(_willBeginEditingRowAtIndexPath, willBeginEditingRowAtIndexPath, ZZRow_willBeginEditingRowAtIndexPath);
-//}
-//- (void)setDidEndEditingRowAtIndexPath:(void (^)(UITableView *, NSIndexPath *))didEndEditingRowAtIndexPath {
-//    ZZBlockSetter(_didEndEditingRowAtIndexPath, didEndEditingRowAtIndexPath, ZZRow_didEndEditingRowAtIndexPath);
-//}
-//- (void)setIndentationLevelForRowAtIndexPath:(NSInteger (^)(UITableView *, NSIndexPath *))indentationLevelForRowAtIndexPath {
-//    ZZBlockSetter(_indentationLevelForRowAtIndexPath, indentationLevelForRowAtIndexPath, ZZRow_indentationLevelForRowAtIndexPath);
-//}
-//
-//// MARK: section delegate
-//
-//- (void)setWillDisplayHeaderView:(void (^)(UITableView *, UIView *, NSInteger))willDisplayHeaderView {
-//    ZZBlockSetter(_willDisplayHeaderView, willDisplayHeaderView, ZZSection_willDisplayHeaderView);
-//}
-//- (void)setWillDisplayFooterView:(void (^)(UITableView *, UIView *, NSInteger))willDisplayFooterView {
-//    ZZBlockSetter(_willDisplayFooterView, willDisplayFooterView, ZZSection_willDisplayFooterView);
-//}
-//- (void)setDidEndDisplayingHeaderView:(void (^)(UITableView *, UIView *, NSInteger))didEndDisplayingHeaderView {
-//    ZZBlockSetter(_didEndDisplayingHeaderView, didEndDisplayingHeaderView, ZZSection_didEndDisplayingHeaderView);
-//}
-//- (void)setDidEndDisplayingFooterView:(void (^)(UITableView *, UIView *, NSInteger))didEndDisplayingFooterView {
-//    ZZBlockSetter(_didEndDisplayingFooterView, didEndDisplayingFooterView, ZZSection_didEndDisplayingFooterView);
-//}
-//- (void)setHeightForHeaderInSection:(CGFloat (^)(UITableView *, NSInteger))heightForHeaderInSection {
-//    ZZBlockSetter(_heightForHeaderInSection, heightForHeaderInSection, ZZSection_heightForHeaderInSection);
-//}
-//- (void)setHeightForFooterInSection:(CGFloat (^)(UITableView *, NSInteger))heightForFooterInSection {
-//    ZZBlockSetter(_heightForFooterInSection, heightForFooterInSection, ZZSection_heightForFooterInSection);
-//}
-//- (void)setEstimatedHeightForFooterInSection:(CGFloat (^)(UITableView *, NSInteger))estimatedHeightForFooterInSection {
-//    ZZBlockSetter(_estimatedHeightForFooterInSection, estimatedHeightForFooterInSection, ZZSection_estimatedHeightForHeaderInSection);
-//}
-//- (void)setEstimatedHeightForHeaderInSection:(CGFloat (^)(UITableView *, NSInteger))estimatedHeightForHeaderInSection {
-//    ZZBlockSetter(_estimatedHeightForHeaderInSection, estimatedHeightForHeaderInSection, ZZSection_estimatedHeightForFooterInSection);
-//}
-//- (void)setViewForHeaderInSection:(UIView * (^)(UITableView *, NSInteger))viewForHeaderInSection {
-//    ZZBlockSetter(_viewForHeaderInSection, viewForHeaderInSection, ZZSection_viewForHeaderInSection);
-//}
-//- (void)setViewForFooterInSection:(UIView * (^)(UITableView *, NSInteger))viewForFooterInSection {
-//    ZZBlockSetter(_viewForFooterInSection, viewForFooterInSection, ZZSection_viewForFooterInSection);
-//}
-//
-//// MARK: section dataSource
-//
-//- (void)setTitleForHeaderInSection:(NSString * (^)(UITableView *, NSInteger))titleForHeaderInSection {
-//    ZZBlockSetter(_titleForHeaderInSection, titleForHeaderInSection, ZZSection_titleForHeaderInSection);
-//}
-//- (void)setTitleForFooterInSection:(NSString * (^)(UITableView *, NSInteger))titleForFooterInSection {
-//    ZZBlockSetter(_titleForFooterInSection, titleForFooterInSection, ZZSection_titleForFooterInSection);
-//}

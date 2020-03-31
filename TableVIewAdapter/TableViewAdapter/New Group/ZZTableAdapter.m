@@ -21,6 +21,8 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
 @interface ZZTableAdapter () {
     BOOL _needUpdateMethodOptions;
     ZZTableViewDelegateMethodType _finalMethodOptions;
+    NSUInteger _finalMethodOptions1;
+    NSUInteger _finalMethodOptions2;
 }
 
 @property (nonatomic, strong) NSMutableArray<ZZTableSectionItem *> *mutableSectionItems;
@@ -37,15 +39,20 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
 }
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
+    NSString *selName = NSStringFromSelector(aSelector);
     ZZTableViewDelegateMethodType methodType = ZZMethodTypeWithSEL(aSelector);
     if (methodType != ZZTableViewDelegateMethodTypeNone) {
+        if ([selName isEqualToString:@"tableView:didEndDisplayingCell:forRowAtIndexPath:"]) {
+            NSLog(@"111  %@", selName);
+        } else {
+            NSLog(@"     %@", selName);
+        }
         [self updateMethodOptionsIfNeeded];
-        //NSString *selName = NSStringFromSelector(aSelector);
-        if (_finalMethodOptions & methodType) {
-            //NSLog(@"能响应 %@", selName);
+        if (ZZMethodTypeCanRespond(methodType, _finalMethodOptions1, _finalMethodOptions2)) {
+            NSLog(@"能响应 %@", selName);
             return YES;
         } else {
-            //NSLog(@"不能响应 %@", selName);
+            NSLog(@"不能响应 %@", selName);
             return NO;
         }
     }
@@ -62,38 +69,58 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
     }
 }
 - (void)_updateMethodOptions {
-    _finalMethodOptions = self.methodOptions;
+    _finalMethodOptions1 = self.methodOptions1;
+    _finalMethodOptions2 = self.methodOptions2;
     for (ZZTableSectionItem *section in _mutableSectionItems) {
         //NSLog(@"%ld | %ld section", (long)_finalMethodOptions, (long)section.methodOptions);
-        _finalMethodOptions |= section.methodOptions;
+        _finalMethodOptions1 |= section.methodOptions1;
+        _finalMethodOptions2 |= section.methodOptions2;
         for (ZZTableRowItem *row in section.rowItems) {
             //NSLog(@"%ld | %ld row", (long)_finalMethodOptions, (long)row.methodOptions);
-            _finalMethodOptions |= row.methodOptions;
+            _finalMethodOptions1 |= row.methodOptions1;
+            _finalMethodOptions2 |= row.methodOptions2;
         }
     }
 }
 - (void)updateMethodOptionsWithSection:(ZZTableSectionItem *)sectionItem {
     sectionItem.adapter = self;
-    _finalMethodOptions |= sectionItem.methodOptions;
+    _finalMethodOptions1 |= sectionItem.methodOptions1;
+    _finalMethodOptions2 |= sectionItem.methodOptions2;
     for (ZZTableRowItem *rowItem in sectionItem.rowItems) {
-        _finalMethodOptions |= rowItem.methodOptions;
+        _finalMethodOptions1 |= rowItem.methodOptions1;
+        _finalMethodOptions2 |= sectionItem.methodOptions2;
     }
 }
-- (void)updateMethodOptionsWithMethodType:(ZZTableViewDelegateMethodType)methodType addOrRemoveBlock:(BOOL)flag {
+
+- (void)updateMethodOption1:(NSUInteger)option1 methodOption2:(NSUInteger)option2 addOrRemoveBlock:(BOOL)flag {
     if (flag) {
-        _finalMethodOptions |= methodType;
+        _finalMethodOptions1 |= option1;
+        _finalMethodOptions2 |= option2;
     } else {
+        BOOL didSetOp1 = NO;
+        BOOL didSetOp2 = NO;
         for (ZZTableSectionItem *sectionItem in _mutableSectionItems) {
-            if (sectionItem.methodOptions & methodType) {
-                return;
+            if (!didSetOp1 && (sectionItem.methodOptions1 & option1)) {
+                _finalMethodOptions1 &= ~option1;
+                didSetOp1 = YES;
             }
+            if (!didSetOp2 && (sectionItem.methodOptions2 & option2)) {
+                _finalMethodOptions2 &= ~option2;
+                didSetOp2 = YES;
+            }
+            if (didSetOp1 && didSetOp2) return;
             for (ZZTableRowItem *rowItem in sectionItem.rowItems) {
-                if (rowItem.methodOptions & methodType) {
-                    return;
+                if (!didSetOp1 && (rowItem.methodOptions1 & option1)) {
+                    _finalMethodOptions1 &= ~option1;
+                    didSetOp1 = YES;
                 }
+                if (!didSetOp2 && (rowItem.methodOptions2 & option2)) {
+                    _finalMethodOptions2 &= ~option2;
+                    didSetOp2 = YES;
+                }
+                if (didSetOp1 && didSetOp2) return;
             }
         }
-        _finalMethodOptions &= ~methodType;
     }
 }
 

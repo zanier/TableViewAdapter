@@ -35,15 +35,16 @@
         return;
     }
     _headerView = headerView;
-    if (headerView) {
+    if (_headerView) {
+        __weak UIView *weakHeaderView = _headerView;
         self.viewForHeaderInSection = ^UIView * _Nonnull(UITableView * _Nonnull tableView, NSInteger section) {
-            return headerView;
+            return weakHeaderView;
         };
         self.heightForHeaderInSection = ^CGFloat(UITableView * _Nonnull tableView, NSInteger section) {
-            return CGRectGetHeight(headerView.bounds);
+            return CGRectGetHeight(weakHeaderView.bounds);
         };
         self.estimatedHeightForHeaderInSection = ^CGFloat(UITableView * _Nonnull tableView, NSInteger section) {
-            return CGRectGetHeight(headerView.bounds);
+            return CGRectGetHeight(weakHeaderView.bounds);
         };
     } else {
         self.viewForHeaderInSection = nil;
