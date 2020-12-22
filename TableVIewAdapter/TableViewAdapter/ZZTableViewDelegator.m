@@ -60,20 +60,11 @@ self.delegateBlocks[@(methodOptions)] = [block copy];\
 }
 
 - (void)didSetBlock:(BOOL)blockIfNonnull methodType:(ZZTableViewDelegateMethodType)methodOptions {
-    if (methodOptions < 32) {
-        NSUInteger options = 1 << methodOptions;
-        if (blockIfNonnull) {
-            _methodOptions1 |= options;
-        } else {
-            _methodOptions1 &= ~options;
-        }
+    NSUInteger options = 1 << methodOptions;
+    if (blockIfNonnull) {
+        _methodOptions |= options;
     } else {
-        NSUInteger options = 1 << (methodOptions - 32);
-        if (blockIfNonnull) {
-            _methodOptions2 |= options;
-        } else {
-            _methodOptions2 &= ~options;
-        }
+        _methodOptions &= ~options;
     }
 }
 
@@ -205,7 +196,7 @@ self.delegateBlocks[@(methodOptions)] = [block copy];\
     return self.delegateBlocks[@(ZZRow_indentationLevelForRowAtIndexPath)];
 }
 
-// MARK: section delegate
+/// MARK: section delegate
 
 - (void)setWillDisplayHeaderView:(void (^)(UITableView *, UIView *, NSInteger))willDisplayHeaderView {
     ZZBlockSetter(willDisplayHeaderView, ZZSection_willDisplayHeaderView);
@@ -268,7 +259,7 @@ self.delegateBlocks[@(methodOptions)] = [block copy];\
     return self.delegateBlocks[@(ZZSection_viewForFooterInSection)];
 }
 
-// MARK: section dataSource
+/// MARK: section dataSource
 
 - (void)setTitleForHeaderInSection:(NSString * (^)(UITableView *, NSInteger))titleForHeaderInSection {
     ZZBlockSetter(titleForHeaderInSection, ZZSection_titleForHeaderInSection);

@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ZZTableViewCellProtocol <NSObject>
 
-//@property (nonatomic, strong) ZZTableRowItem *rowItem;
 - (void)setRowItem:(ZZTableRowItem * _Nonnull)rowItem;
 
 @end
@@ -21,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZZTableViewCell : UITableViewCell <ZZTableViewCellProtocol>
 
 - (void)setRowItem:(ZZTableRowItem * _Nonnull)rowItem;
+
+// Override
 - (void)reloadWithRowItem:(ZZTableRowItem *)rowItem;
 
 @end

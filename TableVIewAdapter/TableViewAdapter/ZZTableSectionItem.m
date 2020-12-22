@@ -20,8 +20,8 @@
 - (void)_addRow:(ZZTableRowItem *)row {
     if (!row) return;
     row.sectionItem = self;
-
 }
+
 - (void)_removeRow:(ZZTableRowItem *)row {
     if (row) return;
     row.sectionItem = nil;
@@ -30,39 +30,49 @@
 - (BOOL)containsRow:(ZZTableRowItem *)row {
     return [self.mutableRowItems containsObject:row];
 }
+
 /// MARK: add
+
 - (void)addRow:(ZZTableRowItem *)row {
     [self _addRow:row];
     [self.mutableRowItems addObject:row];
     row.sectionItem = self;
 }
+
 - (void)addRowsFromArray:(NSArray<ZZTableRowItem *> *)rowsArray {
     for (ZZTableRowItem *row in rowsArray) {
         [self _addRow:row];
     }
     [self.mutableRowItems addObjectsFromArray:rowsArray];
 }
+
 /// MARK: insert
+
 - (void)insertRow:(ZZTableRowItem *)row atIndex:(NSUInteger)idx {
     [self _addRow:row];
     [self.mutableRowItems insertObject:row atIndex:idx];
 }
+
 - (void)insertRows:(NSArray<ZZTableRowItem *> *)rowsArray atIndex:(NSUInteger)idx {
     for (ZZTableRowItem *row in rowsArray) {
         [self _addRow:row];
     }
     [self.mutableRowItems insertObjects:rowsArray atIndexes:[NSIndexSet indexSetWithIndex:idx]];
 }
+
 /// MARK: remove
+
 - (void)removeRow:(ZZTableRowItem *)row {
     [self _removeRow:row];
     [self.mutableRowItems removeObject:row];
 }
+
 - (void)removeRowAtIndex:(NSUInteger)idx {
     ZZTableRowItem *row = [self.mutableRowItems objectAtIndex:idx];
     [self _removeRow:row];
     [self.mutableRowItems removeObjectAtIndex:idx];
 }
+
 - (void)removeRowsInArray:(NSArray<ZZTableRowItem *> *)rowsArray {
     for (ZZTableRowItem *row in rowsArray) {
         [self _removeRow:row];
@@ -83,7 +93,7 @@
 
 - (void)didSetBlock:(BOOL)blockIfNonnull methodType:(ZZTableViewDelegateMethodType)methodOptions {
     [super didSetBlock:blockIfNonnull methodType:methodOptions];
-    [self.adapter updateMethodOption1:self.methodOptions1 methodOption2:self.methodOptions2 addOrRemoveBlock:blockIfNonnull];
+    [self.adapter updateMethodOption:self.methodOptions addOrRemoveBlock:blockIfNonnull];
 }
 
 @end

@@ -13,7 +13,7 @@
 
 - (void)didSetBlock:(BOOL)blockIfNonnull methodType:(ZZTableViewDelegateMethodType)methodOptions {
     [super didSetBlock:blockIfNonnull methodType:methodOptions];
-    [self.sectionItem.adapter updateMethodOption1:self.methodOptions1 methodOption2:self.methodOptions2 addOrRemoveBlock:blockIfNonnull];
+    [self.sectionItem.adapter updateMethodOption:self.methodOptions addOrRemoveBlock:blockIfNonnull];
 }
 
 @end

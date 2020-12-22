@@ -10,84 +10,44 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-//typedef NS_OPTIONS(unsigned long long, ZZTableViewDelegateMethodType) {
-//    ZZTableViewDelegateMethodTypeNone = 0,
-//    // row delegate
-//    ZZRow_willDisplayCellForRow = 1 << 0,
-//    ZZRow_didEndDisplayingCell = 1 << 1,
-//    ZZRow_heightForRowAtIndexPath = 1 << 2,
-//    ZZRow_estimatedHeightForRowAtIndexPath = 1 << 3,
-//    ZZRow_accessoryButtonTappedForRowWithIndexPath = 1 << 4,
-//    ZZRow_shouldHighlightRowAtIndexPath = 1 << 5,
-//    ZZRow_didHighlightRowAtIndexPath = 1 << 6,
-//    ZZRow_didUnhighlightRowAtIndexPath = 1 << 7,
-//    ZZRow_willSelectRowAtIndexPath = 1 << 8,
-//    ZZRow_willDeselectRowAtIndexPath = 1 << 9,
-//    ZZRow_didSelectRowAtIndexPath = 1 << 10,
-//    ZZRow_didDeselectRowAtIndexPath = 1 << 11,
-//    ZZRow_editingStyleForRowAtIndexPath = 1 << 12,
-//    ZZRow_titleForDeleteConfirmationButtonForRowAtIndexPath = 1 << 13,
-//    ZZRow_editActionsForRowAtIndexPath = 1 << 14,
-//    ZZRow_leadingSwipeActionsConfigurationForRowAtIndexPath = 1 << 15,
-//    ZZRow_trailingSwipeActionsConfigurationForRowAtIndexPath = 1 << 16,
-//    ZZRow_shouldIndentWhileEditingRowAtIndexPath = 1 << 17,
-//    ZZRow_willBeginEditingRowAtIndexPath = 1 << 18,
-//    ZZRow_didEndEditingRowAtIndexPath = 1 << 17,
-//    ZZRow_indentationLevelForRowAtIndexPath = 1 << 18,
-//    // section delegate
-//    ZZSection_willDisplayHeaderView = 1 << 19,
-//    ZZSection_willDisplayFooterView = 1 << 20,
-//    ZZSection_didEndDisplayingHeaderView = 1 << 21,
-//    ZZSection_didEndDisplayingFooterView = 1 << 22,
-//    ZZSection_heightForHeaderInSection = 1 << 23,
-//    ZZSection_heightForFooterInSection = 1 << 24,
-//    ZZSection_estimatedHeightForHeaderInSection = 1 << 25,
-//    ZZSection_estimatedHeightForFooterInSection = 1 << 26,
-//    ZZSection_viewForHeaderInSection = 1 << 27,
-//    ZZSection_viewForFooterInSection = 1 << 28,
-//    // section datasource
-//    ZZSection_titleForHeaderInSection = 1 << 29,
-//    ZZSection_titleForFooterInSection = 1 << 30,
-//};
-
 typedef NS_OPTIONS(NSInteger, ZZTableViewDelegateMethodType) {
-    ZZTableViewDelegateMethodTypeNone = -1,
+    ZZTableViewDelegateMethodTypeNone = 0,
     // row delegate
-    ZZRow_willDisplayCellForRow = 0,
-    ZZRow_didEndDisplayingCell = 1,
-    ZZRow_heightForRowAtIndexPath = 2,
-    ZZRow_estimatedHeightForRowAtIndexPath = 3,
-    ZZRow_accessoryButtonTappedForRowWithIndexPath = 4,
-    ZZRow_shouldHighlightRowAtIndexPath = 5,
-    ZZRow_didHighlightRowAtIndexPath = 6,
-    ZZRow_didUnhighlightRowAtIndexPath = 7,
-    ZZRow_willSelectRowAtIndexPath = 8,
-    ZZRow_willDeselectRowAtIndexPath = 9,
-    ZZRow_didSelectRowAtIndexPath = 55,
-    ZZRow_didDeselectRowAtIndexPath = 11,
-    ZZRow_editingStyleForRowAtIndexPath = 12,
-    ZZRow_titleForDeleteConfirmationButtonForRowAtIndexPath = 13,
-    ZZRow_editActionsForRowAtIndexPath = 14,
-    ZZRow_leadingSwipeActionsConfigurationForRowAtIndexPath = 15,
-    ZZRow_trailingSwipeActionsConfigurationForRowAtIndexPath = 16,
-    ZZRow_shouldIndentWhileEditingRowAtIndexPath = 17,
-    ZZRow_willBeginEditingRowAtIndexPath = 18,
-    ZZRow_didEndEditingRowAtIndexPath = 17,
-    ZZRow_indentationLevelForRowAtIndexPath = 18,
+    ZZRow_willDisplayCellForRow = 1,
+    ZZRow_didEndDisplayingCell = 2,
+    ZZRow_heightForRowAtIndexPath = 3,
+    ZZRow_estimatedHeightForRowAtIndexPath = 4,
+    ZZRow_accessoryButtonTappedForRowWithIndexPath = 5,
+    ZZRow_shouldHighlightRowAtIndexPath = 6,
+    ZZRow_didHighlightRowAtIndexPath = 7,
+    ZZRow_didUnhighlightRowAtIndexPath = 8,
+    ZZRow_willSelectRowAtIndexPath = 9,
+    ZZRow_willDeselectRowAtIndexPath = 10,
+    ZZRow_didSelectRowAtIndexPath = 11,
+    ZZRow_didDeselectRowAtIndexPath = 13,
+    ZZRow_editingStyleForRowAtIndexPath = 14,
+    ZZRow_titleForDeleteConfirmationButtonForRowAtIndexPath = 15,
+    ZZRow_editActionsForRowAtIndexPath = 16,
+    ZZRow_leadingSwipeActionsConfigurationForRowAtIndexPath = 17,
+    ZZRow_trailingSwipeActionsConfigurationForRowAtIndexPath = 18,
+    ZZRow_shouldIndentWhileEditingRowAtIndexPath = 19,
+    ZZRow_willBeginEditingRowAtIndexPath = 20,
+    ZZRow_didEndEditingRowAtIndexPath = 21,
+    ZZRow_indentationLevelForRowAtIndexPath = 22,
     // section delegate
-    ZZSection_willDisplayHeaderView = 19,
-    ZZSection_willDisplayFooterView = 20,
-    ZZSection_didEndDisplayingHeaderView = 21,
-    ZZSection_didEndDisplayingFooterView = 22,
-    ZZSection_heightForHeaderInSection = 23,
-    ZZSection_heightForFooterInSection = 24,
-    ZZSection_estimatedHeightForHeaderInSection = 25,
-    ZZSection_estimatedHeightForFooterInSection = 26,
-    ZZSection_viewForHeaderInSection = 27,
-    ZZSection_viewForFooterInSection = 28,
+    ZZSection_willDisplayHeaderView = 23,
+    ZZSection_willDisplayFooterView = 24,
+    ZZSection_didEndDisplayingHeaderView = 25,
+    ZZSection_didEndDisplayingFooterView = 26,
+    ZZSection_heightForHeaderInSection = 27,
+    ZZSection_heightForFooterInSection = 28,
+    ZZSection_estimatedHeightForHeaderInSection = 29,
+    ZZSection_estimatedHeightForFooterInSection = 30,
+    ZZSection_viewForHeaderInSection = 31,
+    ZZSection_viewForFooterInSection = 32,
     // section datasource
-    ZZSection_titleForHeaderInSection = 29,
-    ZZSection_titleForFooterInSection = 30,
+    ZZSection_titleForHeaderInSection = 33,
+    ZZSection_titleForFooterInSection = 34,
 };
 
 #pragma clang diagnostic push
@@ -170,22 +130,14 @@ static ZZTableViewDelegateMethodType ZZMethodTypeWithSEL(SEL aSelector) {
         };
     });
     NSNumber *typeValue = dict[NSStringFromSelector(aSelector)];
-    //ZZTableViewDelegateMethodType type = [typeValue unsignedIntegerValue];
     if (typeValue) return (ZZTableViewDelegateMethodType)[typeValue unsignedIntegerValue];
     return ZZTableViewDelegateMethodTypeNone;
 }
 
-static BOOL ZZMethodTypeCanRespond(ZZTableViewDelegateMethodType type, NSUInteger option1, NSUInteger option2) {
-    if (type < 32) {
-        NSUInteger option = 1 << (type);
-        return option1 & option;
-    } else if (type < 64) {
-        NSUInteger option = 1 << (type - 32);
-        return option2 & option;
-    }
-    return NO;
+inline static BOOL ZZMethodTypeCanRespond(ZZTableViewDelegateMethodType type, long long option) {
+    long long typeOption = 1 << (type);
+    return option & typeOption;
 }
-
 
 #pragma clang diagnostic pop
 

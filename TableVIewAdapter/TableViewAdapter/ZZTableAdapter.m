@@ -20,11 +20,10 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
 
 @interface ZZTableAdapter () {
     BOOL _needUpdateMethodOptions;
-    ZZTableViewDelegateMethodType _finalMethodOptions;
-    NSUInteger _finalMethodOptions1;
-    NSUInteger _finalMethodOptions2;
+    long long _finalMethodOptions;
 }
 
+@property (nonatomic, nullable, weak) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<ZZTableSectionItem *> *mutableSectionItems;
 
 @end
@@ -39,20 +38,14 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
 }
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
-    NSString *selName = NSStringFromSelector(aSelector);
     ZZTableViewDelegateMethodType methodType = ZZMethodTypeWithSEL(aSelector);
     if (methodType != ZZTableViewDelegateMethodTypeNone) {
-        if ([selName isEqualToString:@"tableView:didEndDisplayingCell:forRowAtIndexPath:"]) {
-            NSLog(@"111  %@", selName);
-        } else {
-            NSLog(@"     %@", selName);
-        }
         [self updateMethodOptionsIfNeeded];
-        if (ZZMethodTypeCanRespond(methodType, _finalMethodOptions1, _finalMethodOptions2)) {
-            NSLog(@"能响应 %@", selName);
+        if (ZZMethodTypeCanRespond(methodType, _finalMethodOptions)) {
+            //NSLog(@"能响应 %@", NSStringFromSelector(aSelector));
             return YES;
         } else {
-            NSLog(@"不能响应 %@", selName);
+            //NSLog(@"不能响应 %@", NSStringFromSelector(aSelector));
             return NO;
         }
     }
@@ -62,63 +55,51 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
 - (void)setNeedUpdateMethodOptions {
     _needUpdateMethodOptions = YES;
 }
+
 - (void)updateMethodOptionsIfNeeded {
     if (_needUpdateMethodOptions) {
         [self _updateMethodOptions];
         _needUpdateMethodOptions = NO;
     }
 }
+
 - (void)_updateMethodOptions {
-    _finalMethodOptions1 = self.methodOptions1;
-    _finalMethodOptions2 = self.methodOptions2;
+    _finalMethodOptions = self.methodOptions;
     for (ZZTableSectionItem *section in _mutableSectionItems) {
         //NSLog(@"%ld | %ld section", (long)_finalMethodOptions, (long)section.methodOptions);
-        _finalMethodOptions1 |= section.methodOptions1;
-        _finalMethodOptions2 |= section.methodOptions2;
+        _finalMethodOptions |= section.methodOptions;
         for (ZZTableRowItem *row in section.rowItems) {
             //NSLog(@"%ld | %ld row", (long)_finalMethodOptions, (long)row.methodOptions);
-            _finalMethodOptions1 |= row.methodOptions1;
-            _finalMethodOptions2 |= row.methodOptions2;
+            _finalMethodOptions |= row.methodOptions;
         }
     }
 }
+
 - (void)updateMethodOptionsWithSection:(ZZTableSectionItem *)sectionItem {
     sectionItem.adapter = self;
-    _finalMethodOptions1 |= sectionItem.methodOptions1;
-    _finalMethodOptions2 |= sectionItem.methodOptions2;
+    _finalMethodOptions |= sectionItem.methodOptions;
     for (ZZTableRowItem *rowItem in sectionItem.rowItems) {
-        _finalMethodOptions1 |= rowItem.methodOptions1;
-        _finalMethodOptions2 |= sectionItem.methodOptions2;
+        _finalMethodOptions |= rowItem.methodOptions;
     }
 }
 
-- (void)updateMethodOption1:(NSUInteger)option1 methodOption2:(NSUInteger)option2 addOrRemoveBlock:(BOOL)flag {
+- (void)updateMethodOption:(NSUInteger)option addOrRemoveBlock:(BOOL)flag {
     if (flag) {
-        _finalMethodOptions1 |= option1;
-        _finalMethodOptions2 |= option2;
+        _finalMethodOptions |= option;
     } else {
-        BOOL didSetOp1 = NO;
-        BOOL didSetOp2 = NO;
+        BOOL didSetOp = NO;
         for (ZZTableSectionItem *sectionItem in _mutableSectionItems) {
-            if (!didSetOp1 && (sectionItem.methodOptions1 & option1)) {
-                _finalMethodOptions1 &= ~option1;
-                didSetOp1 = YES;
+            if (!didSetOp && (sectionItem.methodOptions & option)) {
+                _finalMethodOptions &= ~option;
+                didSetOp = YES;
             }
-            if (!didSetOp2 && (sectionItem.methodOptions2 & option2)) {
-                _finalMethodOptions2 &= ~option2;
-                didSetOp2 = YES;
-            }
-            if (didSetOp1 && didSetOp2) return;
+            if (didSetOp) return;
             for (ZZTableRowItem *rowItem in sectionItem.rowItems) {
-                if (!didSetOp1 && (rowItem.methodOptions1 & option1)) {
-                    _finalMethodOptions1 &= ~option1;
-                    didSetOp1 = YES;
+                if (!didSetOp && (rowItem.methodOptions & option)) {
+                    _finalMethodOptions &= ~option;
+                    didSetOp = YES;
                 }
-                if (!didSetOp2 && (rowItem.methodOptions2 & option2)) {
-                    _finalMethodOptions2 &= ~option2;
-                    didSetOp2 = YES;
-                }
-                if (didSetOp1 && didSetOp2) return;
+                if (didSetOp) return;
             }
         }
     }
@@ -164,6 +145,8 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
     [self setNeedUpdateMethodOptions];
 }
 
+/// MARK: - sectionItems
+
 - (NSMutableArray<ZZTableSectionItem *> *)mutableSectionItems {
     if (!_mutableSectionItems) {
         _mutableSectionItems = [NSMutableArray array];
@@ -178,6 +161,7 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
 /// MARK: - <UITableViewDataSource>
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    self.tableView = tableView;
     return self.mutableSectionItems.count;
 }
 
@@ -202,8 +186,11 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
         cell = [(UITableViewCell<ZZTableViewCellProtocol> *)[cls alloc] initWithStyle:rowItem.cellStyle reuseIdentifier:rowItem.cellIdentifier];
     }
     cell.rowItem = rowItem;
-    if (rowItem.willReloadCellForRow) rowItem.willReloadCellForRow(tableView, cell, indexPath);
-    else if (self.willReloadCellForRow) self.willReloadCellForRow(tableView, cell, indexPath);
+    if (rowItem.willReloadCellForRow) {
+        rowItem.willReloadCellForRow(tableView, cell, indexPath);
+    } else if (self.willReloadCellForRow) {
+        self.willReloadCellForRow(tableView, cell, indexPath);
+    }
     return cell;
 }
 

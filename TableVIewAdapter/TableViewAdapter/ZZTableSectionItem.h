@@ -18,8 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) ZZTableAdapter *adapter;
 
-@property (nonatomic, strong) ZZTableViewDelegator *delegator;
-
 @property (readonly) NSArray<ZZTableRowItem *> *rowItems;
 
 ///MARK: contain

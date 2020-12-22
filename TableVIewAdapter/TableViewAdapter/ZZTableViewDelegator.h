@@ -13,11 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZZTableViewDelegator : NSObject
 
-@property (nonatomic, strong) NSString *key;
-@property (nonatomic, strong) NSMutableDictionary *delegateBlocks;
-
-@property (nonatomic, assign) NSUInteger methodOptions1;
-@property (nonatomic, assign) NSUInteger methodOptions2;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, id> *delegateBlocks;
+@property (nonatomic, assign) long long methodOptions;
 
 - (void)didSetBlock:(BOOL)blockIfNonnull methodType:(ZZTableViewDelegateMethodType)methodOptions;
 

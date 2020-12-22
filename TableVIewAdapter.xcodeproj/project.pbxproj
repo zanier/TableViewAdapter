@@ -118,20 +118,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3ACC6FE4241CDFA00061971E /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				3AD4AFE7238BF19400433D90 /* ZZTableAdapter.h */,
-				3AD4AFE8238BF19400433D90 /* ZZTableAdapter.m */,
-				3AD4AFEA238BF4A800433D90 /* ZZTableSectionItem.h */,
-				3AD4AFEB238BF4A800433D90 /* ZZTableSectionItem.m */,
-				3AD4AFED238BF4D500433D90 /* ZZTableRowItem.h */,
-				3AD4AFEE238BF4D500433D90 /* ZZTableRowItem.m */,
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		3ACC6FE5241CDFAB0061971E /* New Group1 */ = {
+		3ACC6FE5241CDFAB0061971E /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				3ACC6FE7241CE1A80061971E /* ZZNormalRowItem.h */,
@@ -145,7 +132,7 @@
 				3ACC6FFA241CF9090061971E /* ZZTextFieldCell.h */,
 				3ACC6FFB241CF9090061971E /* ZZTextFieldCell.m */,
 			);
-			path = "New Group1";
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		3ACC6FF0241CEC900061971E /* Utils */ = {
@@ -189,6 +176,7 @@
 				3ACC6FF2241CF00C0061971E /* NormalViewController.m */,
 				3ACC6FF4241CF3D40061971E /* CustomCellViewController.h */,
 				3ACC6FF5241CF3D40061971E /* CustomCellViewController.m */,
+				3ACC6FE5241CDFAB0061971E /* Custom */,
 				3AD4AFE6238BF16600433D90 /* TableViewAdapter */,
 				3AD4AF72238BF10C00433D90 /* Main.storyboard */,
 				3AD4AF75238BF10E00433D90 /* Assets.xcassets */,
@@ -219,8 +207,12 @@
 		3AD4AFE6238BF16600433D90 /* TableViewAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				3ACC6FE5241CDFAB0061971E /* New Group1 */,
-				3ACC6FE4241CDFA00061971E /* New Group */,
+				3AD4AFE7238BF19400433D90 /* ZZTableAdapter.h */,
+				3AD4AFE8238BF19400433D90 /* ZZTableAdapter.m */,
+				3AD4AFEA238BF4A800433D90 /* ZZTableSectionItem.h */,
+				3AD4AFEB238BF4A800433D90 /* ZZTableSectionItem.m */,
+				3AD4AFED238BF4D500433D90 /* ZZTableRowItem.h */,
+				3AD4AFEE238BF4D500433D90 /* ZZTableRowItem.m */,
 				3ACC6FE1241BB9840061971E /* ZZTableViewCell.h */,
 				3ACC6FE2241BB9840061971E /* ZZTableViewCell.m */,
 				3ACC6FBC241A8B570061971E /* ZZTableViewUtil.h */,
@@ -293,7 +285,7 @@
 		3AD4AF61238BF10C00433D90 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = zz;
 				TargetAttributes = {
 					3AD4AF68238BF10C00433D90 = {
@@ -457,6 +449,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -516,6 +509,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

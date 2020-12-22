@@ -14,13 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZZTableAdapter : ZZTableViewDelegator <UITableViewDataSource, UITableViewDelegate>
 
-//@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, nullable, weak, readonly) UITableView *tableView;
 @property (nonatomic, strong) ZZTableViewDelegator *delegator;
 
 @property (readonly) NSArray<ZZTableSectionItem *> *sectionItems;
 
-//- (void)updateMethodOptionsWithMethodType:(ZZTableViewDelegateMethodType)methodType addOrRemoveBlock:(BOOL)flag;
-- (void)updateMethodOption1:(NSUInteger)option1 methodOption2:(NSUInteger)option2 addOrRemoveBlock:(BOOL)flag;
+- (void)updateMethodOption:(NSUInteger)option addOrRemoveBlock:(BOOL)flag;
 
 ///MARK: contain
 - (BOOL)containsSection:(ZZTableSectionItem *)section;
