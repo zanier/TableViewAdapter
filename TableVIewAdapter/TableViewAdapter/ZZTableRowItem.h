@@ -18,10 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) Class cellClass;
 @property (nonatomic, assign) UITableViewCellStyle cellStyle;
-@property (nonatomic, weak) ZZTableSectionItem *sectionItem;
+@property (nonatomic, nullable, weak) ZZTableSectionItem *sectionItem;
 @property (nonatomic, nullable, weak) UITableViewCell *cell;
-@property (nonatomic, copy) NSString *cellIdentifier;
-@property (nonatomic, strong) ZZTableViewDelegator *delegator;
+@property (nonatomic, nullable, copy) NSString *cellIdentifier;
 
 @end
 

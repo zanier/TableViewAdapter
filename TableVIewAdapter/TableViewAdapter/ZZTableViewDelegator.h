@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableDictionary<NSNumber *, id> *delegateBlocks;
 @property (nonatomic, assign) long long methodOptions;
 
+/// MARK: private
+
 - (void)didSetBlock:(BOOL)blockIfNonnull methodType:(ZZTableViewDelegateMethodType)methodOptions;
 
 /// MARK: UITableViewDataSource
@@ -24,9 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// MARK: row delegate method
 @property (nonatomic, nullable, copy) void (^willDisplayCellForRow)(UITableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath);
-
 @property (nonatomic, nullable, copy) void (^didEndDisplayingCell)(UITableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath);
-
 @property (nonatomic, nullable, copy) CGFloat (^heightForRowAtIndexPath)(UITableView *tableView, NSIndexPath *indexPath);
 @property (nonatomic, nullable, copy) CGFloat (^estimatedHeightForRowAtIndexPath)(UITableView *tableView, NSIndexPath *indexPath);
 //@property (nonatomic, copy) UITableViewCellAccessoryType (^accessoryTypeForRowWithIndexPath)(UITableView *tableView, NSIndexPath *indexPath);
@@ -47,7 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, copy) void (^willBeginEditingRowAtIndexPath)(UITableView *tableView, NSIndexPath *indexPath);
 @property (nonatomic, nullable, copy) void (^didEndEditingRowAtIndexPath)(UITableView *tableView, NSIndexPath *indexPath);
 @property (nonatomic, nullable, copy) NSInteger (^indentationLevelForRowAtIndexPath)(UITableView *tableView, NSIndexPath *indexPath);
-// MARK: section delegate method
+
+/// MARK: section delegate method
+
 @property (nonatomic, nullable, copy) void (^willDisplayHeaderView)(UITableView *tableView, UIView *view, NSInteger section);
 @property (nonatomic, nullable, copy) void (^willDisplayFooterView)(UITableView *tableView, UIView *view, NSInteger section);
 @property (nonatomic, nullable, copy) void (^didEndDisplayingHeaderView)(UITableView *tableView, UIView *view, NSInteger section);
@@ -65,4 +67,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-

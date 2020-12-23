@@ -14,21 +14,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZZTableSectionItem : ZZTableViewDelegator
+@interface ZZTableSectionItem : ZZTableViewMutableItem
 
-@property (nonatomic, weak) ZZTableAdapter *adapter;
+@property (nonatomic, nullable, weak) ZZTableAdapter *adapter;
 
 @property (readonly) NSArray<ZZTableRowItem *> *rowItems;
 
-///MARK: contain
+/// MARK: contain
 - (BOOL)containsRow:(ZZTableRowItem *)row;
-///MARK: add
+/// MARK: add
 - (void)addRow:(ZZTableRowItem *)row;
 - (void)addRowsFromArray:(NSArray<ZZTableRowItem *> *)rowsArray;
-///MARK: insert
+/// MARK: insert
 - (void)insertRow:(ZZTableRowItem *)row atIndex:(NSUInteger)idx;
 - (void)insertRows:(NSArray<ZZTableRowItem *> *)rowsArray atIndex:(NSUInteger)idx;
-///MARK: remove
+/// MARK: remove
 - (void)removeRow:(ZZTableRowItem *)row;
 - (void)removeRowAtIndex:(NSUInteger)idx;
 - (void)removeRowsInArray:(NSArray<ZZTableRowItem *> *)rowsArray;

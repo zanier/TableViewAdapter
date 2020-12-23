@@ -88,7 +88,7 @@
 }
 
 - (NSArray<ZZTableRowItem *> *)rowItems {
-    return _mutableRowItems;
+    return _mutableRowItems.copy;
 }
 
 - (void)didSetBlock:(BOOL)blockIfNonnull methodType:(ZZTableViewDelegateMethodType)methodOptions {

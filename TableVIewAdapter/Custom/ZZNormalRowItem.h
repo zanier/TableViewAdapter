@@ -13,22 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZZNormalRowItem : ZZTableRowItem
 
 @property (nonatomic, assign) CGFloat cellHeight;
-
-/**
- 设置cell图片，默认使用“iconName”图片名来保存，若设置了具体的图片“iconImage”，则优先使用图片。
- 传入的图片可进行特殊的图片处理。
- */
-@property (nonatomic, copy) NSString *iconName;
-@property (nonatomic, strong) UIImage *iconImage;
-
-///**
-// 设置cell的标题与副标题。若设置副标题则cellStyle类型默认为UITableViewCellStyleValue1，如需改变类型，则重新设置cellStyle。
-// */
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *detailText;
-
-@property (nonatomic, copy) UIColor *titleColor;
-@property (nonatomic, copy) UIColor *detailTextColor;
+@property (nonatomic, nullable, strong) id imageOrImageName;
+@property (nonatomic, nullable, copy) NSString *title;
+@property (nonatomic, nullable, copy) NSString *detailText;
+@property (nonatomic, nullable, strong) UIFont *titleFont;
+@property (nonatomic, nullable, strong) UIFont *detailTextFont;
+@property (nonatomic, nullable, strong) UIColor *titleColor;
+@property (nonatomic, nullable, strong) UIColor *detailTextColor;
 
 /// MARK: new
 
@@ -37,9 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL showsReorderControl;        // default is NO
 @property (nonatomic) BOOL shouldIndentWhileEditing;   // default is YES.  This is unrelated to the indentation level below.
 @property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
-@property (nonatomic, strong) UIView *accessoryView;
+@property (nonatomic, nullable, strong) UIView *accessoryView;
 @property (nonatomic) UITableViewCellAccessoryType    editingAccessoryType;       // default is UITableViewCellAccessoryNone. use to set standard type
-@property (nonatomic, strong, nullable) UIView       *editingAccessoryView;       // if set, use custom view. ignore editingAccessoryType. tracks if enabled can calls accessory action
+@property (nonatomic, nullable, strong) UIView       *editingAccessoryView;       // if set, use custom view. ignore editingAccessoryType. tracks if enabled can calls accessory action
 
 @property (nonatomic) NSInteger                       indentationLevel;           // adjust content indent. default is 0
 @property (nonatomic) CGFloat                         indentationWidth;           // width for each level. default is 10.0

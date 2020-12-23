@@ -7,11 +7,13 @@
 //
 
 #import "ZZNormalRowItem.h"
+#import "ZZNormalRowCell.h"
 
 @implementation ZZNormalRowItem
 
 - (Class)cellClass {
-    return NSClassFromString(@"ZZNormalRowCell");
+    return ZZNormalRowCell.self;
+    //return NSClassFromString(@"ZZNormalRowCell");
 }
 
 - (void)setCellHeight:(CGFloat)cellHeight {

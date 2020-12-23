@@ -28,7 +28,6 @@
     self.title = @"ZZTableView";
     __weak typeof(self) weakSelf = self;
     
-    
     ZZNormalRowItem *row0 = [[ZZNormalRowItem alloc] init];
     row0.title = @"Normal cell";
     row0.titleColor = [UIColor orangeColor];
@@ -49,7 +48,7 @@
     };
 
     ZZNormalRowItem *row2 = [[ZZNormalRowItem alloc] init];
-    row2.title = @"Builder";
+    row2.title = @"none";
     
     ZZNormalSectionItem *section0 = [[ZZNormalSectionItem alloc] init];
     [section0 addRowsFromArray:@[row0, row1, row2]];
@@ -73,6 +72,7 @@
     NSLog(@"Size of class UILabel : %zu", class_getInstanceSize(UILabel.self));
     
     NSLog(@"Size of class ZZTableViewDelegator : %zu", class_getInstanceSize(ZZTableViewDelegator.self));
+    NSLog(@"Size of class ZZTableRowItem : %zu", class_getInstanceSize(ZZTableRowItem.self));
     NSLog(@"Size of class ZZNormalRowItem : %zu", class_getInstanceSize(ZZNormalRowItem.self));
     NSLog(@"Size of class ZZNormalSectionItem : %zu", class_getInstanceSize(ZZNormalSectionItem.self));
     NSLog(@"Size of class ZZTableAdapter : %zu", class_getInstanceSize(ZZTableAdapter.self));

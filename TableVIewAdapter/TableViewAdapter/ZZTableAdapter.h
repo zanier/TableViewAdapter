@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZZTableAdapter : ZZTableViewDelegator <UITableViewDataSource, UITableViewDelegate>
+@interface ZZTableAdapter : ZZTableViewMutableItem <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, nullable, weak, readonly) UITableView *tableView;
 @property (nonatomic, strong) ZZTableViewDelegator *delegator;
@@ -21,20 +21,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateMethodOption:(NSUInteger)option addOrRemoveBlock:(BOOL)flag;
 
-///MARK: contain
+/// MARK: contain
 - (BOOL)containsSection:(ZZTableSectionItem *)section;
-///MARK: add
+/// MARK: add
 - (void)addSection:(ZZTableSectionItem *)section;
 - (void)addSectionsFromArray:(NSArray<ZZTableSectionItem *> *)sectionsArray;
-///MARK: insert
+/// MARK: insert
 - (void)insertSection:(ZZTableSectionItem *)section atIndex:(NSUInteger)idx;
 - (void)insertSections:(NSArray<ZZTableSectionItem *> *)sectionsArray atIndex:(NSUInteger)idx;
-///MARK: remove
+/// MARK: remove
 - (void)removeSection:(ZZTableSectionItem *)section;
 - (void)removeSectionAtIndex:(NSUInteger)idx;
 - (void)removeSectionsInArray:(NSArray<ZZTableSectionItem *> *)sectionsArray;
 
 @property (nonatomic, nullable, copy) NSIndexPath *(^targetIndexPathForMoveFromRowAtIndexPathToProposedIndexPath)(UITableView *tableView, NSIndexPath *sourceIndexPath, NSIndexPath *proposedDestinationIndexPath);
+
+/// MARK:
+
 
 @end
 

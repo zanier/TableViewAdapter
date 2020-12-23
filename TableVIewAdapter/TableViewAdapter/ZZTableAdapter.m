@@ -58,12 +58,12 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
 
 - (void)updateMethodOptionsIfNeeded {
     if (_needUpdateMethodOptions) {
-        [self _updateMethodOptions];
+        [self updateMethodOptions];
         _needUpdateMethodOptions = NO;
     }
 }
 
-- (void)_updateMethodOptions {
+- (void)updateMethodOptions {
     _finalMethodOptions = self.methodOptions;
     for (ZZTableSectionItem *section in _mutableSectionItems) {
         //NSLog(@"%ld | %ld section", (long)_finalMethodOptions, (long)section.methodOptions);
@@ -105,11 +105,11 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
     }
 }
 
-///MARK: contain
+/// MARK: contain
 - (BOOL)containsSection:(ZZTableSectionItem *)section {
     return [_mutableSectionItems containsObject:section];
 }
-///MARK: add
+/// MARK: add
 - (void)addSection:(ZZTableSectionItem *)section {
     [self.mutableSectionItems addObject:section];
     [self updateMethodOptionsWithSection:section];
@@ -120,7 +120,7 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
         [self updateMethodOptionsWithSection:sectionItem];
     }
 }
-///MARK: insert
+/// MARK: insert
 - (void)insertSection:(ZZTableSectionItem *)section atIndex:(NSUInteger)idx {
     [self.mutableSectionItems insertObject:section atIndex:idx];
     [self updateMethodOptionsWithSection:section];
@@ -131,7 +131,7 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
         [self updateMethodOptionsWithSection:sectionItem];
     }
 }
-///MARK: remove
+/// MARK: remove
 - (void)removeSection:(ZZTableSectionItem *)section {
     [self.mutableSectionItems removeObject:section];
     [self setNeedUpdateMethodOptions];
