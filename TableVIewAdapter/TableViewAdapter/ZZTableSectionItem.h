@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZZTableSectionItem : ZZTableViewMutableItem
+@interface ZZTableSectionItem : ZZTableViewSectionDelegator
 
 @property (nonatomic, nullable, weak) ZZTableAdapter *adapter;
 

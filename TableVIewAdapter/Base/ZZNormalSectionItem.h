@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, nullable, strong) UIView *footerView;
 
+@property (nonatomic, assign) CGFloat headerHeight;
+
+@property (nonatomic, assign) CGFloat footerHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -24,13 +24,12 @@
     [super viewDidLoad];
     
     ZZNormalRowItem *row0 = [[ZZNormalRowItem alloc] init];
-    row0.title = @"row0";
-    row0.titleColor = [UIColor orangeColor];
-    
     ZZTextFieldRow *row1 = [[ZZTextFieldRow alloc] init];
     row1.willReloadCellForRow = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath) {
-        cell.textLabel.text = @"Switch Cell";
-        cell.textLabel.textColor = [UIColor cyanColor];
+        cell.textLabel.text = @"row0";
+        cell.textLabel.textColor = [UIColor orangeColor];
+        cell.detailTextLabel.text = @"Switch Cell";
+        cell.detailTextLabel.textColor = [UIColor cyanColor];
     };
     
     ZZNormalSectionItem *section0 = [[ZZNormalSectionItem alloc] init];

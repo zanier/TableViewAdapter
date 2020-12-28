@@ -20,12 +20,21 @@
 
 @implementation NormalViewController
 
+- (void)dealloc {
+    NSLog(@"[%@ %@]", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"NormalViewController";
+    __weak typeof(self) weakSelf = self;
     ZZNormalRowItem *row0 = [[ZZNormalRowItem alloc] init];
-    row0.title = @"row0";
-    row0.titleColor = [UIColor orangeColor];
+    row0.cellStyle = UITableViewCellStyleSubtitle;
+    row0.willReloadCellForRow = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath) {
+        cell.textLabel.text = @"row0";
+        cell.textLabel.textColor = [UIColor orangeColor];
+        cell.detailTextLabel.text = weakSelf.title;
+    };
     row0.heightForRowAtIndexPath = ^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
         return 100;
     };
@@ -35,15 +44,19 @@
     };
 
     ZZNormalRowItem *row1 = [[ZZNormalRowItem alloc] init];
-    row1.title = @"row1";
-    row1.titleColor = [UIColor blackColor];
+    row1.willReloadCellForRow = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath) {
+        cell.textLabel.text = @"row1";
+        cell.textLabel.textColor = [UIColor blackColor];
+    };
     row1.heightForRowAtIndexPath = ^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
         return 45;
     };
 
     ZZNormalRowItem *row2 = [[ZZNormalRowItem alloc] init];
-    row2.title = @"row2";
-    row2.titleColor = [UIColor grayColor];
+    row2.willReloadCellForRow = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath) {
+        cell.textLabel.text = @"row2";
+        cell.textLabel.textColor = [UIColor grayColor];
+    };
     row2.heightForRowAtIndexPath = ^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
         return 65;
     };
@@ -68,10 +81,12 @@
     [section0 addRowsFromArray:@[row0, row1, row2]];
     
     ZZNormalSectionItem *section1 = [[ZZNormalSectionItem alloc] init];
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 200; i++) {
         ZZNormalRowItem *rowI = [[ZZNormalRowItem alloc] init];
-        rowI.title = [NSString stringWithFormat:@"row%i", i];
-        rowI.titleColor = (i % 2 == 0) ? [UIColor grayColor] : [UIColor orangeColor];
+        rowI.willReloadCellForRow = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath) {
+            cell.textLabel.text = [NSString stringWithFormat:@"row%i", i];
+            cell.textLabel.textColor = (i % 2 == 0) ? [UIColor grayColor] : [UIColor orangeColor];
+        };
         [section1 addRow:rowI];
     }
 

@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3ACC6FBE241A8B570061971E /* ZZTableViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC6FBD241A8B570061971E /* ZZTableViewUtil.m */; };
 		3ACC6FC1241B3CB70061971E /* FPSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC6FC0241B3CB70061971E /* FPSView.m */; };
 		3ACC6FC4241B666B0061971E /* ZZTableViewDelegator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC6FC3241B666B0061971E /* ZZTableViewDelegator.m */; };
-		3ACC6FE3241BB9840061971E /* ZZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC6FE2241BB9840061971E /* ZZTableViewCell.m */; };
 		3ACC6FE9241CE1A80061971E /* ZZNormalRowItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC6FE8241CE1A80061971E /* ZZNormalRowItem.m */; };
-		3ACC6FEC241CE2030061971E /* ZZNormalRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC6FEB241CE2030061971E /* ZZNormalRowCell.m */; };
+		3ACC6FEC241CE2030061971E /* ZZBaseRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC6FEB241CE2030061971E /* ZZBaseRowCell.m */; };
 		3ACC6FEF241CE2490061971E /* ZZNormalSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC6FEE241CE2490061971E /* ZZNormalSectionItem.m */; };
 		3ACC6FF3241CF00C0061971E /* NormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC6FF2241CF00C0061971E /* NormalViewController.m */; };
 		3ACC6FF6241CF3D40061971E /* CustomCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC6FF5241CF3D40061971E /* CustomCellViewController.m */; };
@@ -28,6 +26,7 @@
 		3AD4AFE9238BF19400433D90 /* ZZTableAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4AFE8238BF19400433D90 /* ZZTableAdapter.m */; };
 		3AD4AFEC238BF4A800433D90 /* ZZTableSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4AFEB238BF4A800433D90 /* ZZTableSectionItem.m */; };
 		3AD4AFEF238BF4D500433D90 /* ZZTableRowItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4AFEE238BF4D500433D90 /* ZZTableRowItem.m */; };
+		ACE1B6F625997ADB00411BF0 /* ZZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE1B6F525997ADB00411BF0 /* ZZTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,17 +48,14 @@
 
 /* Begin PBXFileReference section */
 		3ACC6FBC241A8B570061971E /* ZZTableViewUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZTableViewUtil.h; sourceTree = "<group>"; };
-		3ACC6FBD241A8B570061971E /* ZZTableViewUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZTableViewUtil.m; sourceTree = "<group>"; };
 		3ACC6FBF241B3CB70061971E /* FPSView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPSView.h; sourceTree = "<group>"; };
 		3ACC6FC0241B3CB70061971E /* FPSView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPSView.m; sourceTree = "<group>"; };
 		3ACC6FC2241B666B0061971E /* ZZTableViewDelegator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZTableViewDelegator.h; sourceTree = "<group>"; };
 		3ACC6FC3241B666B0061971E /* ZZTableViewDelegator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZTableViewDelegator.m; sourceTree = "<group>"; };
-		3ACC6FE1241BB9840061971E /* ZZTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZTableViewCell.h; sourceTree = "<group>"; };
-		3ACC6FE2241BB9840061971E /* ZZTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZTableViewCell.m; sourceTree = "<group>"; };
 		3ACC6FE7241CE1A80061971E /* ZZNormalRowItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZNormalRowItem.h; sourceTree = "<group>"; };
 		3ACC6FE8241CE1A80061971E /* ZZNormalRowItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZNormalRowItem.m; sourceTree = "<group>"; };
-		3ACC6FEA241CE2030061971E /* ZZNormalRowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZNormalRowCell.h; sourceTree = "<group>"; };
-		3ACC6FEB241CE2030061971E /* ZZNormalRowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZNormalRowCell.m; sourceTree = "<group>"; };
+		3ACC6FEA241CE2030061971E /* ZZBaseRowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZBaseRowCell.h; sourceTree = "<group>"; };
+		3ACC6FEB241CE2030061971E /* ZZBaseRowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZBaseRowCell.m; sourceTree = "<group>"; };
 		3ACC6FED241CE2490061971E /* ZZNormalSectionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZNormalSectionItem.h; sourceTree = "<group>"; };
 		3ACC6FEE241CE2490061971E /* ZZNormalSectionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZNormalSectionItem.m; sourceTree = "<group>"; };
 		3ACC6FF1241CF00C0061971E /* NormalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalViewController.h; sourceTree = "<group>"; };
@@ -91,6 +87,9 @@
 		3AD4AFEB238BF4A800433D90 /* ZZTableSectionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZTableSectionItem.m; sourceTree = "<group>"; };
 		3AD4AFED238BF4D500433D90 /* ZZTableRowItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZTableRowItem.h; sourceTree = "<group>"; };
 		3AD4AFEE238BF4D500433D90 /* ZZTableRowItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZTableRowItem.m; sourceTree = "<group>"; };
+		ACE1B6E62595C0E900411BF0 /* ZZTableViewCellProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZTableViewCellProtocol.h; sourceTree = "<group>"; };
+		ACE1B6F425997ADB00411BF0 /* ZZTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZTableViewCell.h; sourceTree = "<group>"; };
+		ACE1B6F525997ADB00411BF0 /* ZZTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,12 +120,6 @@
 		3ACC6FE5241CDFAB0061971E /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				3ACC6FE7241CE1A80061971E /* ZZNormalRowItem.h */,
-				3ACC6FE8241CE1A80061971E /* ZZNormalRowItem.m */,
-				3ACC6FEA241CE2030061971E /* ZZNormalRowCell.h */,
-				3ACC6FEB241CE2030061971E /* ZZNormalRowCell.m */,
-				3ACC6FED241CE2490061971E /* ZZNormalSectionItem.h */,
-				3ACC6FEE241CE2490061971E /* ZZNormalSectionItem.m */,
 				3ACC6FF7241CF8ED0061971E /* ZZTextFieldRow.h */,
 				3ACC6FF8241CF8ED0061971E /* ZZTextFieldRow.m */,
 				3ACC6FFA241CF9090061971E /* ZZTextFieldCell.h */,
@@ -176,13 +169,14 @@
 				3ACC6FF2241CF00C0061971E /* NormalViewController.m */,
 				3ACC6FF4241CF3D40061971E /* CustomCellViewController.h */,
 				3ACC6FF5241CF3D40061971E /* CustomCellViewController.m */,
-				3ACC6FE5241CDFAB0061971E /* Custom */,
 				3AD4AFE6238BF16600433D90 /* TableViewAdapter */,
-				3AD4AF72238BF10C00433D90 /* Main.storyboard */,
+				ACE1B6EA2595CABF00411BF0 /* Base */,
+				3ACC6FE5241CDFAB0061971E /* Custom */,
+				3AD4AF7B238BF10E00433D90 /* main.m */,
+				3AD4AF7A238BF10E00433D90 /* Info.plist */,
 				3AD4AF75238BF10E00433D90 /* Assets.xcassets */,
 				3AD4AF77238BF10E00433D90 /* LaunchScreen.storyboard */,
-				3AD4AF7A238BF10E00433D90 /* Info.plist */,
-				3AD4AF7B238BF10E00433D90 /* main.m */,
+				3AD4AF72238BF10C00433D90 /* Main.storyboard */,
 			);
 			path = TableVIewAdapter;
 			sourceTree = "<group>";
@@ -207,20 +201,33 @@
 		3AD4AFE6238BF16600433D90 /* TableViewAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				3AD4AFE7238BF19400433D90 /* ZZTableAdapter.h */,
-				3AD4AFE8238BF19400433D90 /* ZZTableAdapter.m */,
-				3AD4AFEA238BF4A800433D90 /* ZZTableSectionItem.h */,
-				3AD4AFEB238BF4A800433D90 /* ZZTableSectionItem.m */,
-				3AD4AFED238BF4D500433D90 /* ZZTableRowItem.h */,
-				3AD4AFEE238BF4D500433D90 /* ZZTableRowItem.m */,
-				3ACC6FE1241BB9840061971E /* ZZTableViewCell.h */,
-				3ACC6FE2241BB9840061971E /* ZZTableViewCell.m */,
 				3ACC6FBC241A8B570061971E /* ZZTableViewUtil.h */,
-				3ACC6FBD241A8B570061971E /* ZZTableViewUtil.m */,
+				ACE1B6E62595C0E900411BF0 /* ZZTableViewCellProtocol.h */,
 				3ACC6FC2241B666B0061971E /* ZZTableViewDelegator.h */,
 				3ACC6FC3241B666B0061971E /* ZZTableViewDelegator.m */,
+				3AD4AFED238BF4D500433D90 /* ZZTableRowItem.h */,
+				3AD4AFEE238BF4D500433D90 /* ZZTableRowItem.m */,
+				3AD4AFEA238BF4A800433D90 /* ZZTableSectionItem.h */,
+				3AD4AFEB238BF4A800433D90 /* ZZTableSectionItem.m */,
+				3AD4AFE7238BF19400433D90 /* ZZTableAdapter.h */,
+				3AD4AFE8238BF19400433D90 /* ZZTableAdapter.m */,
+				ACE1B6F425997ADB00411BF0 /* ZZTableViewCell.h */,
+				ACE1B6F525997ADB00411BF0 /* ZZTableViewCell.m */,
 			);
 			path = TableViewAdapter;
+			sourceTree = "<group>";
+		};
+		ACE1B6EA2595CABF00411BF0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3ACC6FE7241CE1A80061971E /* ZZNormalRowItem.h */,
+				3ACC6FE8241CE1A80061971E /* ZZNormalRowItem.m */,
+				3ACC6FEA241CE2030061971E /* ZZBaseRowCell.h */,
+				3ACC6FEB241CE2030061971E /* ZZBaseRowCell.m */,
+				3ACC6FED241CE2490061971E /* ZZNormalSectionItem.h */,
+				3ACC6FEE241CE2490061971E /* ZZNormalSectionItem.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,16 +362,15 @@
 			files = (
 				3ACC6FF9241CF8ED0061971E /* ZZTextFieldRow.m in Sources */,
 				3ACC6FC1241B3CB70061971E /* FPSView.m in Sources */,
-				3ACC6FEC241CE2030061971E /* ZZNormalRowCell.m in Sources */,
+				3ACC6FEC241CE2030061971E /* ZZBaseRowCell.m in Sources */,
+				ACE1B6F625997ADB00411BF0 /* ZZTableViewCell.m in Sources */,
 				3AD4AFEF238BF4D500433D90 /* ZZTableRowItem.m in Sources */,
 				3AD4AFE9238BF19400433D90 /* ZZTableAdapter.m in Sources */,
-				3ACC6FBE241A8B570061971E /* ZZTableViewUtil.m in Sources */,
 				3AD4AFEC238BF4A800433D90 /* ZZTableSectionItem.m in Sources */,
 				3AD4AF71238BF10C00433D90 /* ViewController.m in Sources */,
 				3ACC6FFC241CF9090061971E /* ZZTextFieldCell.m in Sources */,
 				3AD4AF7C238BF10E00433D90 /* main.m in Sources */,
 				3ACC6FEF241CE2490061971E /* ZZNormalSectionItem.m in Sources */,
-				3ACC6FE3241BB9840061971E /* ZZTableViewCell.m in Sources */,
 				3AD4AF6E238BF10C00433D90 /* AppDelegate.m in Sources */,
 				3ACC6FE9241CE1A80061971E /* ZZNormalRowItem.m in Sources */,
 				3ACC6FC4241B666B0061971E /* ZZTableViewDelegator.m in Sources */,

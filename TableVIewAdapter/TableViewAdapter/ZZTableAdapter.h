@@ -12,13 +12,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZZTableAdapter : ZZTableViewMutableItem <UITableViewDataSource, UITableViewDelegate>
+@interface ZZTableAdapter : ZZTableViewAdapterDelegator <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, nullable, weak, readonly) UITableView *tableView;
+- (UITableView *)tableView;
+
 @property (nonatomic, strong) ZZTableViewDelegator *delegator;
 
 @property (readonly) NSArray<ZZTableSectionItem *> *sectionItems;
 
+/// MARK: private
 - (void)updateMethodOption:(NSUInteger)option addOrRemoveBlock:(BOOL)flag;
 
 /// MARK: contain
@@ -35,9 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeSectionsInArray:(NSArray<ZZTableSectionItem *> *)sectionsArray;
 
 @property (nonatomic, nullable, copy) NSIndexPath *(^targetIndexPathForMoveFromRowAtIndexPathToProposedIndexPath)(UITableView *tableView, NSIndexPath *sourceIndexPath, NSIndexPath *proposedDestinationIndexPath);
-
-/// MARK:
-
 
 @end
 

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_OPTIONS(NSInteger, ZZTableViewDelegateMethodType) {
     ZZTableViewDelegateMethodTypeNone = 0,
+    // row dataSource
+    ZZRow_willReloadCellForRow = 35,
     // row delegate
     ZZRow_willDisplayCellForRow = 1,
     ZZRow_didEndDisplayingCell = 2,
@@ -57,6 +59,7 @@ static ZZTableViewDelegateMethodType ZZMethodTypeWithSEL(SEL aSelector) {
     static NSDictionary *dict;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        // row dataSource
         // row delegate method name
         NSString *didEndDisplayingCell = NSStringFromSelector(@selector(tableView:didEndDisplayingCell:forRowAtIndexPath:));
         NSString *heightForRowAtIndexPath = NSStringFromSelector(@selector(tableView:heightForRowAtIndexPath:));

@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZZTableRowItem : ZZTableViewDelegator
+@interface ZZTableRowItem : ZZTableViewRowDelegator
 
 @property (nonatomic, weak) Class cellClass;
 @property (nonatomic, assign) UITableViewCellStyle cellStyle;

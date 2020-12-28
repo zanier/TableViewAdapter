@@ -1,22 +1,21 @@
 //
-//  ZZTableViewCell.h
+//  ZZTableViewCellProtocol.h
 //  TableVIewAdapter
 //
-//  Created by ZZ on 2020/3/13.
+//  Created by handsome on 2020/12/25.
 //  Copyright © 2020 zz. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "ZZTableRowItem.h"
-#import "ZZTableViewCellProtocol.h"
+#import <Foundation/Foundation.h>
+
+@class ZZTableRowItem;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZZTableViewCell : UITableViewCell <ZZTableViewCellProtocol>
+@protocol ZZTableViewCellProtocol <NSObject>
 
+@required
 - (void)setRowItem:(ZZTableRowItem * _Nonnull)rowItem;
-
-// Override
 - (void)reloadWithRowItem:(ZZTableRowItem *)rowItem;
 
 @end

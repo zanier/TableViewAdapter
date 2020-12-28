@@ -1,5 +1,5 @@
 //
-//  ZZTextFieldCell.h
+//  ZZBaseRowCell.h
 //  TableVIewAdapter
 //
 //  Created by ZZ on 2020/3/14.
@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ZZTableViewCellProtocol.h"
+#import "ZZNormalRowItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZZTextFieldCell : UITableViewCell <ZZTableViewCellProtocol>
+@interface ZZBaseRowCell : UITableViewCell <ZZTableViewCellProtocol>
+
+@property (nonatomic, strong) ZZTableRowItem *rowItem;
 
 @end
 

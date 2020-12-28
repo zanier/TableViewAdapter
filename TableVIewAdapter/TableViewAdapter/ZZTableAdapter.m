@@ -37,6 +37,14 @@ ZZTableRowItem *rowItem = sectionItem.rowItems[indexPath.row];
     return self;
 }
 
+/// 重写是否响应方法
+///
+/// 由于声明了绝大多数的数据源和代理方法，在表视图刷新时会通过`respondsToSelector`决定是否调用对象的数据源和代理方法。
+/// 为了保证未使用的数据源和代理方法具有默认的实现，以及刷新时的计算效率，在设置了row与section的数据源和代理方法后，会通
+/// 过位计算的方式保存为long long型的MethodOptions标志，并通过遍历归并为最终的MethodOptions。由此数据决定需要实现的
+/// 数据源和代理方法。
+///
+/// @param aSelector 方法名称
 - (BOOL)respondsToSelector:(SEL)aSelector {
     ZZTableViewDelegateMethodType methodType = ZZMethodTypeWithSEL(aSelector);
     if (methodType != ZZTableViewDelegateMethodTypeNone) {
